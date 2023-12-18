@@ -52,7 +52,7 @@ Trieda `Snake` implementuje hru Snake v jazyku Java s použitím grafickej kniž
 
 #### `public Snake(int sirkaPlochy, int vyskaPlochy, int rychlostHry, int pocetPrekazok, int velkostPolicka)`
 
-Konštruktor triedy Snake. Inicializuje premenné a objekty potrebné pre spustenie hry.
+Konštruktor triedy `Snake`. Inicializuje premenné a objekty potrebné pre spustenie hry.
 
 #### `public void paintComponent(Graphics g)`
 
@@ -64,11 +64,11 @@ Metóda volá vykreslenie v triede HraciaPlocha.
 
 #### `public void umiestniJedlo()`
 
-Umiestňuje nové jedlo na hraciu plochu.
+Volá sa metóda na umiestnenie jedla
 
 #### `public void pohyb()`
 
-Ošetruje pohyb hada, kolízie s jedlom, prekážkami a hranami hracej plochy.
+Zaisťuje pohyb hada, kolízie s jedlom, prekážkami a hranicami hracej plochy.
 
 #### `public static boolean kolizia(Object objekt1, Object objekt2)`
 
@@ -80,7 +80,7 @@ Implementuje akcie, ktoré sa majú vykonať v každom hernom cykle.
 
 #### `public void keyPressed(KeyEvent e)`
 
-Volá metódu z triedy Manazer, ktorá riadi pohyb hada.
+Volá metódu z triedy `Manazer`, ktorá riadi pohyb hada.
 
 ---
 
@@ -104,15 +104,15 @@ Hlavná metóda pre spustenie aplikácie. Vytvorí inštanciu `Aplikacia` a zavo
 
 #### `public void uvodneOkno()`
 
-Zobrazuje úvodné okno s inštrukciami pre hru a ponúka možnosti pre pokračovanie alebo ukončenie hry.
+Zobrazuje úvodné okno s inštrukciami hry a ponúka možnosti pre pokračovanie alebo ukončenie hry.
 
 #### `public void nastavenieObtiaznosti()`
 
-Zobrazuje dialógové okno na nastavenie obtiažnosti hry podľa výberu užívateľa.
+Zobrazuje dialógové okno na nastavenie troch rôznych obtiažnosti hry.
 
 #### `public void vlastnaObtiaznost()`
 
-Zobrazuje dialógové okno pre nastavenie vlastnej obtiažnosti hry.
+Zobrazuje dialógové okno pre nastavenie vlastnej obtiažnosti hry. Hráč si zvolí rýchlosť hry a aj počet prekážok
 
 #### `public int prevratenieRychlosti(int tempoHry)`
 
@@ -124,7 +124,7 @@ Zobrazuje dialógové okno pri prehre a ponúka možnosti pre opakovanie, ukonč
 
 #### `public void spustiHru(int pocetPrekazok, int rychlostHry)`
 
-Spúšťa hru s definovaným počtom prekážok a rýchlosťou.
+Spúšťa hru s definovaným počtom prekážok a rýchlosťou hráčom.
 
 #### `public void restartujHru(Snake snake, Prekazka prekazky)`
 
@@ -152,7 +152,7 @@ Konštruktor triedy `Manazer`, inicializuje inštanciu triedy `Snake`, ktorú bu
 
 #### `public void keyPressed(KeyEvent e)`
 
-Riadi pohyb hada podľa stláčania kláves. Ak je hra pozastavená, je umožnená iba klávesa ESC na vrátenie sa do hry. Ostatné ovládanie hada pomocou kláves WASD alebo šípok na klávesnici je vypnuté.
+Riadi pohyb hada podľa stláčania kláves. Ak je hra pozastavená, je umožnená iba klávesa ESC na vrátenie sa do hry. Ostatné ovládanie hada pomocou kláves WASD alebo šípok na klávesnici je neumožnené.
 
 #### `public void vykresliHada(Graphics g)`
 
@@ -226,7 +226,7 @@ Trieda `Policko` predstavuje jednoduchý objekt reprezentujúci polohu na hernom
 
 #### `public Policko(int x, int y)`
 
-Konštruktor triedy `Policko`. Inicializuje objekt polohy s danými x-ovou a y-ovou súradnicou.
+Konštruktor triedy `Policko` inicializuje objekt polohy s danou x-ovou a y-ovou súradnicou.
 
 ---
 
@@ -246,7 +246,7 @@ Trieda `Prekazka` reprezentuje prekážky na hracej ploche. Prekážky sú gener
 
 ### Metódy triedy `Prekazka`
 
-#### `public Prekazka()`
+#### `public Prekazka(int sirkaPlochy, int vyskaPlochy, int velkostPolicka, int pocetPrekazok)`
 
 Konštruktor triedy `Prekazka`. Inicializuje potrebné premenné, zoznam prekážok a volá metódu na vykreslenie náhodných vygenerovaných prekážkok na hraciu plochu.
 
@@ -277,22 +277,22 @@ Enumerácia `Smer` definuje rôzne smery pohybu hada na hracej ploche. Každý s
 
 ### Premenné triedy `Smer`
 
-- `rychlostX`: Udávaná rýchlosť hada na osi X.
-- `rychlostY`: Udávaná rýchlosť hada na osi Y.
+- `rychlostX`: Rýchlosť pohybu hada v smere osi X.
+- `rychlostY`: Rýchlosť pohybu hada v smere osi Y.
 
 ### Metódy triedy `Smer`
 
 #### `Smer(int rychlostX, int rychlostY)`
 
-Inicializuje nový smer so zadanými hodnotami rýchlosti na osiach X a Y.
+Konštruktor inicializuje nový smer so zadanými hodnotami rýchlosti na osiach X a Y.
 
-#### `public int getRychlostX()`
+<!-- #### `public int getRychlostX()`
 
 Vráti rýchlosť na osi X pre daný smer.
 
 #### `public int getRychlostY()`
 
-Vráti rýchlosť na osi Y pre daný smer.
+Vráti rýchlosť na osi Y pre daný smer. -->
 
 ---
 
