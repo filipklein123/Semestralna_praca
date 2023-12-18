@@ -19,7 +19,6 @@ import javax.swing.UIManager;
  * @version 2023/12/14
  */
 
-//skusam 
 public class Aplikacia {
     
     private Zvuk zvuk;
