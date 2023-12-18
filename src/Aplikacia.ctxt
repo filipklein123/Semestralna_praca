@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=Aplikacia
+comment0.text=\n\ T\u00E1to\ trieda\ sa\ star\u00E1\ o\ sp\u00FA\u0161\u0165anie\ celej\ hry\ pomocou\ 'main'\ met\u00F3dy,\ ktor\u00E1\ hr\u00E1\u010Da\ odk\u00E1\u017Ee\ na\ \u00FAvodn\u00E9\ okno\ hry\ s\ in\u0161trukciami.\n\ Takisto\ si\ hr\u00E1\u010D\ m\u00F4\u017Ee\ vybra\u0165\ obtia\u017Enos\u0165\ hry\ ak\u00FA\ chce.\n\ S\u00FA\ dan\u00E9\ tri\ klasick\u00E9\ obtia\u017Enosti\:\ '\u013Eahk\u00E1',\ 'stredn\u00E1'\ a\ '\u0165a\u017Ek\u00E1'\ a\ ak\ by\ hr\u00E1\u010Dovi\ nevyhovovala\ \u017Eiadna\ z\ t\u00FDchto\ obtia\u017Enosti,\ je\ pridan\u00E1\ aj\ \u0161tvrt\u00E1\ obtia\u017Enos\u0165\ -\ 'vlastn\u00E1'.\n\ Vo\ vlastnej\ obtia\u017Enosti\ si\ hr\u00E1\u010D\ vyberie\ po\u010Det\ prek\u00E1\u017Eok\ a\ takisto\ aj\ r\u00FDchlos\u0165\ hry.\n\ @author\ Filip\ Klein\n\ @version\ 2023/12/14\n
+comment1.params=
+comment1.target=Aplikacia()
+comment10.params=pocetPrekazok\ rychlostHry
+comment10.target=void\ spustiHru(int,\ int)
+comment11.params=snake\ prekazka
+comment11.target=void\ restartujHru(Snake,\ Prekazka)
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+comment3.params=
+comment3.target=void\ uvodneOkno()
+comment4.params=
+comment4.target=void\ nastavenieObtiaznosti()
+comment5.params=
+comment5.target=void\ vlastnaObtiaznost()
+comment6.params=e
+comment6.target=void\ focusGained(java.awt.event.FocusEvent)
+comment7.params=e
+comment7.target=void\ focusLost(java.awt.event.FocusEvent)
+comment8.params=tempoHry
+comment8.target=int\ prevratenieRychlosti(int)
+comment9.params=snake\ prekazka
+comment9.target=void\ prehralSi(Snake,\ Prekazka)
+numComments=12

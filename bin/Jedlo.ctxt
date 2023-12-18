@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Jedlo
+comment1.params=
+comment1.target=Jedlo()
+comment2.params=sirkaPlochy\ vyskaPlochy\ velkostPolicka\ prekazky
+comment2.target=void\ umiestniJedlo(int,\ int,\ int,\ Prekazka)
+comment3.params=prekazky
+comment3.target=boolean\ koliziaJedlaSObjektom(Prekazka)
+comment4.params=g\ velkostPolicka
+comment4.target=void\ vykresli(java.awt.Graphics,\ int)
+comment5.params=
+comment5.target=Policko\ getPolicko()
+numComments=6

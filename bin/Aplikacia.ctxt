@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Aplikacia
+comment1.params=
+comment1.target=Aplikacia()
+comment10.params=pocetPrekazok\ rychlostHry
+comment10.target=void\ spustiHru(int,\ int)
+comment11.params=snake\ prekazka
+comment11.target=void\ restartujHru(Snake,\ Prekazka)
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+comment3.params=
+comment3.target=void\ uvodneOkno()
+comment4.params=
+comment4.target=void\ nastavenieObtiaznosti()
+comment5.params=
+comment5.target=void\ vlastnaObtiaznost()
+comment6.params=e
+comment6.target=void\ focusGained(java.awt.event.FocusEvent)
+comment7.params=e
+comment7.target=void\ focusLost(java.awt.event.FocusEvent)
+comment8.params=tempoHry
+comment8.target=int\ prevratenieRychlosti(int)
+comment9.params=snake\ prekazka
+comment9.target=void\ prehralSi(Snake,\ Prekazka)
+numComments=12

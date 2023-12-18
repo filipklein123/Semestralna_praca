@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Prekazka
+comment0.text=\n\ T\u00E1to\ trieda\ reprezentuje\ prek\u00E1\u017Eky\ v\ hre.\n\ Umo\u017E\u0148uje\ inicializ\u00E1ciu\ a\ generovanie\ prek\u00E1\u017Eok\ na\ n\u00E1hodn\u00FDch\ poloh\u00E1ch.\n\ Celkovo\ je\ t\u00E1to\ trieda\ navrhnut\u00E1\ pre\ spr\u00E1vu\ a\ vykres\u013Eovanie\ prek\u00E1\u017Eok\ v\ hre.\n\ @author\ Filip\ Klein\n\ @version\ 2023/12/14\n
+comment1.params=sirka\ vyska\ velkost\ pocetPrekazok
+comment1.target=void\ inicializuj(int,\ int,\ int,\ int)
+comment2.params=
+comment2.target=java.util.ArrayList\ getPrekazky()
+comment3.params=sirkaPlochy\ vyskaPlochy\ velkostPolicka\ pocetPrekazok
+comment3.target=void\ generujNahodnePrekazky(int,\ int,\ int,\ int)
+comment4.params=hlavaHada
+comment4.target=boolean\ koliziaHadaSPrekazkou(Policko)
+comment5.params=g\ velkostPolicka
+comment5.target=void\ vykresli(java.awt.Graphics,\ int)
+numComments=6

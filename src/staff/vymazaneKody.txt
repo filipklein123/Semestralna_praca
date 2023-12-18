@@ -1,0 +1,173 @@
+//skore + cas - toto by som mohol dať asi do HraciaPlocha.java
+metoda vykresli()
+        
+        g.setColor(Color.blue);
+        g.setFont(new Font("Arial", Font.BOLD, 16));        
+        String bodovyText;
+        long casTeraz = System.currentTimeMillis();
+
+        if (hraPozastavena && !casZastaveny) {
+            casKedyPozastavena = casTeraz;
+            casZastaveny = true;
+        } else if (!hraPozastavena && casZastaveny) {
+            long casOdSpusteniaPoPozastaveni = (casTeraz - casKedyPozastavena);
+            if (casOdSpusteniaPoPozastaveni > 0) 
+                casOdStartu += casOdSpusteniaPoPozastaveni;
+            casZastaveny = false;
+        }
+
+        if (!hraPozastavena) {
+            casHry = casTeraz - casOdStartu;
+            bodovyText = String.format("Dĺžka hada: %d | Čas v hre: %d s", teloHada.size(), casHry / 1000);
+        } else
+            bodovyText = String.format("Dĺžka hada: %d | Čas v hre: %d s", teloHada.size(), casHry / 1000);
+            
+        g.drawString(bodovyText, velkostPolicka - 16, velkostPolicka);
+        
+
+        if (koniecHry) {
+            g.setColor(Color.red);
+            g.drawString("Koniec hry!", velkostPolicka - 16, velkostPolicka * 2);
+        } else if (hraPozastavena) {
+            g.setColor(Color.black);
+            g.drawString("Hra je pozastavená, stlačením klávesy ESC sa vrátite do hry.", velkostPolicka - 16, velkostPolicka * 2);
+        }
+
+metoda actionPerformed(ActionEvent e)
+if (koniecHry) {
+            hernyCyklus.stop();
+            Object[] options = {"Opakovať", "Skončiť", "Zmeniť obtiažnosť"};
+            int odpoved = JOptionPane.showOptionDialog(this, "Prehral si! Čo chceš urobiť?", "Koniec hry", 
+                          JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            if (odpoved == JOptionPane.YES_OPTION) {
+                restartujHru();
+            } else if (odpoved == JOptionPane.CANCEL_OPTION){
+                Window okno = SwingUtilities.getWindowAncestor(this);
+                okno.dispose();
+                Aplikacia.nastavenieObtiaznosti();
+            } else 
+                System.exit(0);
+        } 
+
+ public void restartujHru() {
+        hlavaHada = generujNahodnePolicko();
+        teloHada.clear();
+        umiestniJedlo();
+        prekazky.generujNahodnePrekazky(sirkaPlochy, vyskaPlochy, velkostPolicka, pocetPrekazok);
+
+        if (prekazky.getPrekazky().isEmpty()) 
+            prekazky.generujNahodnePrekazky(sirkaPlochy, vyskaPlochy, velkostPolicka, pocetPrekazok);
+        
+        koniecHry = false;
+        hraPozastavena = false;
+        hernyCyklus.start();
+
+        rychlostX = 0;
+        rychlostY = 0;
+
+        casZastaveny = false;
+        casOdStartu = System.currentTimeMillis();
+    }
+
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+            snake.setHraPozastavena(!snake.getHraPozastavena());
+        else if (!snake.getHraPozastavena()) {
+            int rychlostX = snake.getRychlostX();
+            int rychlostY = snake.getRychlostY();
+
+            if ((e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) && rychlostY != 1) {
+                rychlostX = 0;
+                rychlostY = -1;
+            } else if ((e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) && rychlostY != -1) {
+                rychlostX = 0;
+                rychlostY = 1;
+            } else if ((e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) && rychlostX != 1) {
+                rychlostX = -1;
+                rychlostY = 0;
+            } else if ((e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) && rychlostX != -1) {
+                rychlostX = 1;
+                rychlostY = 0;
+            }
+            snake.setRychlostX(rychlostX);
+            snake.setRychlostY(rychlostY);
+        }
+    }
+
+    
+    private int prevratenieRychlosti(int tempoHry) {
+        //int prevratenaRychlost = Math.max(1, 200 - tempoHry);
+        int minRychlost = 50;
+        int maxRychlost = 120;
+
+        int prevratenaRychlost;
+        if (tempoHry >= 120) {
+            prevratenaRychlost = 1;
+        } else {
+            prevratenaRychlost = 120 - tempoHry;
+        }
+        return Math.min(maxRychlost, Math.max(minRychlost, prevratenaRychlost));
+    }
+    
+    //vygeneruje a inicializuje nahodne polohy prekazok
+    public void generujNahodnePrekazky(int sirkaPlochy, int vyskaPlochy, int velkostPolicka, int pocetPrekazok) {
+        this.prekazka.clear();
+        Random nahodne = new Random();
+        for (int i = 0; i < pocetPrekazok; i++) {
+            int x = nahodne.nextInt(sirkaPlochy / velkostPolicka);
+            int y = nahodne.nextInt(vyskaPlochy / velkostPolicka);
+            this.prekazka.add(new Policko(x, y));
+        }
+    }
+
+    public void generujNahodnePrekazky(int sirkaPlochy, int vyskaPlochy, int velkostPolicka, int pocetPrekazok) {
+        this.prekazka.clear();
+        Random nahodne = new Random();
+        for (int i = 0; i < pocetPrekazok; i++) {
+            int x, y;
+            do {
+                x = nahodne.nextInt(sirkaPlochy / velkostPolicka);
+                y = nahodne.nextInt(vyskaPlochy / velkostPolicka);
+            } while (koliziaHadaSPrekazkou(hlavaHada));
+
+            this.prekazka.add(new Policko(x, y));
+        }
+    }
+    
+    public boolean koliziaHadaSPrekazkou(Policko hlavaHada) {
+        for (Policko prekazkaPolicko : this.prekazka) {
+            if (Snake.kolizia(hlavaHada, prekazkaPolicko)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //overujeme tu kolizie medzi dvoma objektami
+    public static boolean kolizia(Object objekt1, Object objekt2) {
+        if (objekt1 instanceof Policko && objekt2 instanceof Policko) {
+            Policko policko1 = (Policko)objekt1;
+            Policko policko2 = (Policko)objekt2;
+            return policko1.getX() == policko2.getX() && policko1.getY() == policko2.getY();
+        } else if (objekt1 instanceof Policko && objekt2 instanceof Policko) {
+            Policko policko = (Policko)objekt1;
+            Policko prekazka = (Policko)objekt2;
+            return policko.getX() == prekazka.getX() && policko.getY() == prekazka.getY();
+        } else if (objekt1 instanceof Policko && objekt2 instanceof Policko) {
+            Policko policko = (Policko)objekt1;
+            Policko jedlo = (Policko)objekt2;
+            return policko.getX() == jedlo.getX() && policko.getY() == jedlo.getY();
+        }
+        return false;
+    }
+
+    DAL SOM INICIALIZUJ DO KONSTRUKTORA
+    Prekazka.java
+    // public void inicializuj(int sirkaPlochy, int vyskaPlochy, int velkostPolicka, int pocetPrekazok) {
+    //     this.sirkaPlochy = sirkaPlochy;
+    //     this.vyskaPlochy = vyskaPlochy;
+    //     this.velkostPolicka = velkostPolicka;
+    //     this.pocetPrekazok = pocetPrekazok;
+    // }
+    Aplikacia.java
+    // prekazka.inicializuj(snake.getSirkaPlochy(), snake.getVyskaPlochy(), snake.getVelkostPolicka(), snake.getPocetPrekazok());

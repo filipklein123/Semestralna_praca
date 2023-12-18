@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Manazer
+comment0.text=\n\ Trieda\ Manazer\ implementuje\ rozhranie\ 'KeyListener'\ a\ umo\u017E\u0148uje\ ovl\u00E1danie\ hada\ v\ hre.\n\ Takisto\ obsahuje\ aj\ met\u00F3du\ 'keyPressed'\ na\ reakciu\ a\ stl\u00E1\u010Danie\ kl\u00E1ves\ a\ men\u00ED\ smer\ pohybu\ hada.\n\ Hada\ je\ mo\u017En\u00E9\ ovl\u00E1da\u0165\ pomocou\ \u0161\u00EDpok\ alebo\ pomocou\ kl\u00E1ves\ WASD,\ takisto\ je\ hru\ mo\u017En\u00E9\ pozastavi\u0165\ kl\u00E1vesou\ ESC.\n\ @author\ Filip\ Klein\n\ @version\ 2023/12/14\n
+comment1.params=snake
+comment1.target=Manazer(Snake)
+comment2.params=e
+comment2.target=void\ keyPressed(java.awt.event.KeyEvent)
+comment3.params=g
+comment3.target=void\ vykresliHada(java.awt.Graphics)
+comment4.params=e
+comment4.target=void\ keyTyped(java.awt.event.KeyEvent)
+comment5.params=e
+comment5.target=void\ keyReleased(java.awt.event.KeyEvent)
+numComments=6

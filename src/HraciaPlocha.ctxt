@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=HraciaPlocha
+comment0.text=\n\ T\u00E1to\ trieda\ sa\ star\u00E1\ o\ vizu\u00E1lnu\ reprezent\u00E1ciu\ hracej\ plochy\ hada.\n\ Star\u00E1\ sa\ aj\ o\ vykreslenie\ hracej\ plochy\ s\ mrie\u017Ekou\ a\ \u0161achovnicov\u00FDm\ vzorom.\n\ Zobrazuje\ inform\u00E1cie\ o\ priebehu\ hry\ (d\u013A\u017Eka\ hada,\ \u010Das\ hry).\ Teda\ hra\ poskytuje\ hr\u00E1\u010Dovi\ preh\u013Ead\ o\ aktu\u00E1lnom\ stave\ hry.\n\ @author\ Filip\ Klein\n\ @version\ 2023/12/14\n
+comment1.params=sirkaPlochy\ vyskaPlochy\ velkostPolicka\ snake
+comment1.target=HraciaPlocha(int,\ int,\ int,\ Snake)
+comment2.params=g
+comment2.target=void\ vykresli(java.awt.Graphics)
+numComments=3

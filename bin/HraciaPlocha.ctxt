@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=HraciaPlocha
+comment1.params=sirkaPlochy\ vyskaPlochy\ velkostPolicka\ snake
+comment1.target=HraciaPlocha(int,\ int,\ int,\ Snake)
+comment2.params=g
+comment2.target=void\ vykresli(java.awt.Graphics)
+numComments=3

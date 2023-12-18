@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Jedlo
+comment0.text=\n\ T\u00E1to\ trieda\ reprezentuje\ jedlo\ v\ hre.\n\ Obsahuje\ atrib\u00FAty\ pree\ umiestnenie\ jedla\ na\ hracej\ ploche,\ kontrolu\ kol\u00EDzi\u00ED\ s\ prek\u00E1\u017Ekami\ a\ vykres\u013Eovanie\ obr\u00E1zka\ jablka\ na\ poz\u00EDci\u00ED\ jedla.\n\ Celkovo\ je\ trieda\ zodpovedn\u00E1\ za\ spr\u00E1vu\ jedla\ v\ hre\ a\ zabezpe\u010Duje\ jeho\ spr\u00E1vne\ umiestnenie\ a\ vizu\u00E1lnu\ reprezent\u00E1ciu.\n\ @author\ Filip\ Klein\n\ @version\ 2023/12/14\n
+comment1.params=sirkaPlochy\ vyskaPlochy\ velkostPolicka\ prekazky
+comment1.target=void\ umiestniJedlo(int,\ int,\ int,\ Prekazka)
+comment2.params=prekazky
+comment2.target=boolean\ koliziaJedlaSPrekazkou(Prekazka)
+comment3.params=g\ velkostPolicka
+comment3.target=void\ vykresli(java.awt.Graphics,\ int)
+comment4.params=
+comment4.target=Policko\ getPolicko()
+numComments=5

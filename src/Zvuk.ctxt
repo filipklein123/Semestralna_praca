@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Zvuk
+comment0.text=\n\ Trieda\ Zvuk\ sa\ star\u00E1\ o\ prehr\u00E1vanie\ zvukov.\n\ Hra\ umo\u017E\u0148uje\ prehra\u0165\ zvuky\ jedlo\ a\ koniec\ hry,\ \u010Do\ celkovo\ zlep\u0161uje\ dojem\ a\ z\u00E1\u017Eitok\ z\ hry.\n\ @author\ Filip\ Klein\n\ @version\ 2023/12/14\n
+comment1.params=
+comment1.target=Zvuk()
+comment2.params=
+comment2.target=void\ zvukJedla()
+comment3.params=
+comment3.target=void\ zvukKoncaHry()
+numComments=4

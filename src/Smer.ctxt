@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Smer
+comment0.text=\n\ Trieda\ enum,\ ktor\u00E1\ reprezentuje\ mo\u017En\u00E9\ smery\ pohybu\ hada\ v\ hre.\n\ Obsahuje\ \u0161tyri\ kon\u0161tanty\:\ 'HORE',\ 'DOLE',\ 'DOLAVA',\ 'DOPRAVA'\n\ Celkovo\ to\ u\u013Eah\u010Duje\ riadenie\ pohybu\ hada\ v\ jednotliv\u00FDch\ smeroch.\n\ @author\ Filip\ Klein\n\ @version\ 2023/12/14\n
+comment1.params=rychlostX\ rychlostY
+comment1.target=Smer(int,\ int)
+comment2.params=
+comment2.target=int\ getRychlostX()
+comment3.params=
+comment3.target=int\ getRychlostY()
+numComments=4

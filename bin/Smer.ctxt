@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Smer
+comment1.params=rychlostX\ rychlostY
+comment1.target=Smer(int,\ int)
+comment2.params=
+comment2.target=int\ getRychlostX()
+comment3.params=
+comment3.target=int\ getRychlostY()
+numComments=4
