@@ -170,7 +170,7 @@ Táto Java metóda `nastavenieObtiaznosti()` vykonáva nasledujúce úlohy:
    - Pre prípady "Ťažká", "Stredná" a "Ľahká" spúšťa metódu `spustiHru()` s príslušnými parametrami.
    - V prípade nečakaného výberu (default) program sa ukončuje pomocou `System.exit(0)`.
 
-Celkovo táto metóda umožňuje hráčovi zvoliť obtiažnosť hry a podľa toho spustiť príslušnú časť kódu.
+Celkovo táto metóda umožňuje hráčovi zvoliť obtiažnosť hry a podľa toho sa spustí príslušná časť kódu.
 
 ### vlastnaObtiaznost()
 
