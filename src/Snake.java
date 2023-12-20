@@ -132,7 +132,7 @@ public class Snake extends JPanel implements ActionListener, KeyListener {
             this.hlavaHada.setX(this.hlavaHada.getX() + rychlostX);
             this.hlavaHada.setY(this.hlavaHada.getY() + rychlostY);
 
-            //kontrola kolizie hlavy hada s jeho telom
+            //kontrola kolizie hlavyHada s jeho telom
             for (Policko castHada : this.teloHada) {
                 if (kolizia(this.hlavaHada, castHada)) {
                     this.koniecHry = true;

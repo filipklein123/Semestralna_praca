@@ -1,8 +1,8 @@
-# Snake obhajoba
+# Snake obhajoba 21.12.23 - 12:30
 
-- [Snake obhajoba](#snake-obhajoba)
+- [Snake obhajoba 21.12.23 - 12:30](#snake-obhajoba-211223---1230)
   - [Aplikacia.java](#aplikaciajava)
-    - [main(String\[\] args)](#mainstring-args)
+    - [atribúty, konštruktor, main(String\[\] args)](#atribúty-konštruktor-mainstring-args)
     - [uvodneOkno()](#uvodneokno)
     - [nastavenieObtiaznosti()](#nastavenieobtiaznosti)
     - [vlastnaObtiaznost()](#vlastnaobtiaznost)
@@ -29,11 +29,11 @@
     - [atribúty \&\& konštruktor](#atribúty--konštruktor-1)
     - [generujNahodnePrekazky(int sirkaPlochy, int vyskaPlochy, int velkostPolicka, int pocetPrekazok)](#generujnahodneprekazkyint-sirkaplochy-int-vyskaplochy-int-velkostpolicka-int-pocetprekazok)
     - [koliziaHadaSPrekazkou(Policko hlavaHada)](#koliziahadasprekazkoupolicko-hlavahada)
-    - [vykresli(Graphics g,, int velkostPolicka)](#vykresligraphics-g-int-velkostpolicka-1)
+    - [vykresli (Graphics g, int velkostPolicka)](#vykresli-graphics-g-int-velkostpolicka)
   - [Smer.java](#smerjava)
   - [Snake.java](#snakejava)
     - [atribúty](#atribúty)
-    - [konštruktor](#konštruktor)
+    - [konštruktor Snake(int sirkaPlochy, int vyskaPlochy, int rychlostHry, int pocetPrekazok, int velkostPolicka)](#konštruktor-snakeint-sirkaplochy-int-vyskaplochy-int-rychlosthry-int-pocetprekazok-int-velkostpolicka)
     - [paintComponeent(Graphics g)](#paintcomponeentgraphics-g)
     - [vykresli (Graphics g)](#vykresli-graphics-g)
     - [umiestniJedlo()](#umiestnijedlo)
@@ -41,13 +41,18 @@
       - [kolízia hlavyHada a jedla](#kolízia-hlavyhada-a-jedla)
       - [časť jedla sa presunie na jej predchádzajúcu pozíciu](#časť-jedla-sa-presunie-na-jej-predchádzajúcu-pozíciu)
       - [kontrola kolízie s okrajmi hracej plochy](#kontrola-kolízie-s-okrajmi-hracej-plochy)
-      - [pohyb hlavy hada](#pohyb-hlavy-hada)
-      - [kontrola kolízie hlavy hada s jeho telom](#kontrola-kolízie-hlavy-hada-s-jeho-telom)
-      - [kontrola kolizie](#kontrola-kolizie)
+      - [pohyb hlavyHada](#pohyb-hlavyhada)
+      - [kontrola kolízie hlavyHada s telom](#kontrola-kolízie-hlavyhada-s-telom)
+      - [kontrola kolízie hlavyHada s prekážkou](#kontrola-kolízie-hlavyhada-s-prekážkou)
+      - [kontrola kolízie jedla s prekážkou](#kontrola-kolízie-jedla-s-prekážkou)
+    - [kolizia(Object objekt1, Object objekt2)](#koliziaobject-objekt1-object-objekt2)
+    - [actionPerformed(ActionEvent e)](#actionperformedactionevent-e)
+    - [keyPressed (KeyEvent e)](#keypressed-keyevent-e)
+    - [generujNahodnePolicko()](#generujnahodnepolicko)
 
 ## Aplikacia.java
 
-### main(String[] args)
+### atribúty, konštruktor, main(String[] args)
 
 ```java
 private Zvuk zvuk;
@@ -653,7 +658,7 @@ Popis:
 
 - dopísať
 
-### vykresli(Graphics g,, int velkostPolicka)
+### vykresli (Graphics g, int velkostPolicka)
 
 ```java
 public void vykresli(Graphics g, int velkostPolicka) {
@@ -733,7 +738,7 @@ Popis:
 
 - dopísať
 
-### konštruktor
+### konštruktor Snake(int sirkaPlochy, int vyskaPlochy, int rychlostHry, int pocetPrekazok, int velkostPolicka)
 
 ```java
 public Snake(int sirkaPlochy, int vyskaPlochy, int rychlostHry, int pocetPrekazok, int velkostPolicka) {
@@ -866,7 +871,7 @@ Popis:
 
 - dopísať
 
-#### pohyb hlavy hada
+#### pohyb hlavyHada
 
 ```java
 this.hlavaHada.setX(this.hlavaHada.getX() + rychlostX);
@@ -877,7 +882,7 @@ Popis:
 
 - dopísať
 
-#### kontrola kolízie hlavy hada s jeho telom
+#### kontrola kolízie hlavyHada s telom
 
 ```java
 for (Policko castHada : this.teloHada) {
@@ -891,4 +896,86 @@ Popis:
 
 - dopísať
 
-#### kontrola kolizie hlavy hada s prekazkou
+#### kontrola kolízie hlavyHada s prekážkou
+
+```java
+if (this.prekazky.koliziaHadaSPrekazkou(this.hlavaHada)) {
+    this.koniecHry = true;
+}
+```
+
+Popis:
+
+- dopísať
+
+#### kontrola kolízie jedla s prekážkou
+
+```java
+if (this.jedlo.koliziaJedlaSPrekazkou(this.prekazky)) {
+    this.umiestniJedlo();
+}
+```
+
+Popis:
+
+- dopísať
+
+### kolizia(Object objekt1, Object objekt2)
+
+```java
+public static boolean kolizia(Object objekt1, Object objekt2) {
+    if (objekt1 instanceof Policko && objekt2 instanceof Policko) {
+        Policko policko1 = (Policko)objekt1;
+        Policko policko2 = (Policko)objekt2;
+        return policko1.getX() == policko2.getX() && policko1.getY() == policko2.getY();
+    }
+    return false;
+}
+```
+
+Popis:
+
+- dopísať
+
+### actionPerformed(ActionEvent e)
+
+```java
+public void actionPerformed(ActionEvent e) {
+    this.pohyb();
+    repaint();
+
+    //kontrola ci skoncila hra
+    if (this.koniecHry) {
+        Aplikacia aplikacia = new Aplikacia();
+        aplikacia.prehralSi(this, this.prekazky);
+    }
+}
+```
+
+Popis:
+
+- dopísať
+
+### keyPressed (KeyEvent e)
+
+```java
+public void keyPressed(KeyEvent e) {
+    this.manazer.keyPressed(e);
+}
+```
+
+Popis:
+
+- dopísať
+
+### generujNahodnePolicko()
+
+```java
+public Policko generujNahodnePolicko() {
+    return new Policko(this.nahodne.nextInt(this.sirkaPlochy / velkostPolicka), this.nahodne.nextInt(this.vyskaPlochy / velkostPolicka));
+}
+```
+
+Popis:
+
+- dopísať
