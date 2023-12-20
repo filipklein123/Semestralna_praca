@@ -32,7 +32,6 @@
     - [vykresli (Graphics g, int velkostPolicka)](#vykresli-graphics-g-int-velkostpolicka)
   - [Smer.java](#smerjava)
   - [Snake.java](#snakejava)
-    - [atribúty](#atribúty)
     - [konštruktor Snake(int sirkaPlochy, int vyskaPlochy, int rychlostHry, int pocetPrekazok, int velkostPolicka)](#konštruktor-snakeint-sirkaplochy-int-vyskaplochy-int-rychlosthry-int-pocetprekazok-int-velkostpolicka)
     - [paintComponeent(Graphics g)](#paintcomponeentgraphics-g)
     - [vykresli (Graphics g)](#vykresli-graphics-g)
@@ -49,6 +48,8 @@
     - [actionPerformed(ActionEvent e)](#actionperformedactionevent-e)
     - [keyPressed (KeyEvent e)](#keypressed-keyevent-e)
     - [generujNahodnePolicko()](#generujnahodnepolicko)
+
+---
 
 ## Aplikacia.java
 
@@ -69,9 +70,11 @@ public static void main(String[] args) {
 }
 ```
 
-Popis:
+- Tento kód vytvára triedu `Aplikacia` s premennou `zvuk` typu `Zvuk`.
 
-- dopísať
+- V konštruktore sa inicializuje premenná `zvuk` novou inštanciou triedy `Zvuk`.
+
+- Metóda `main` spustí aplikáciu v rozhraní Java Swing, vytvorí inštanciu `Aplikacia` a zavolá metódu `uvodneOkno()`.
 
 ### uvodneOkno()
 
@@ -105,9 +108,21 @@ public void uvodneOkno() {
 }
 ```
 
-Popis:
+- Kód metódy `uvodneOkno()` v Jave vykonáva nasledujúce kroky:
 
-- dopísať
+1. **Vytvorenie komponentov okna:**
+   - Vytvára nový panel (`JPanel`) a `JLabel` s HTML formátovaným textom, ktorý obsahuje inštrukcie hry. Tento text vysvetľuje ovládanie hada a používanie kláves na pohyb a pozastavenie hry.
+
+2. **Vytvorenie dialógového okna (`JOptionPane`):**
+   - Definuje pole možností ("Ďalej", "Koniec").
+   - Používa `JOptionPane.showOptionDialog()` na vytvorenie dialógového okna s uvítacím textom a tlačidlami na výber ďalšieho kroku alebo ukončenie hry.
+
+3. **Spracovanie výberu hráča:**
+   - Získava výber hráča z dialógového okna.
+   - Ak hráč vyberie "Ďalej" (hodnota `0`), volá metódu `nastavenieObtiaznosti()`.
+   - Ak hráč vyberie "Koniec" (hodnota `1`), ukončuje program pomocou `System.exit(0)`.
+
+Celkovo táto metóda vytvára uvítaciu obrazovku pre hru Snake s inštrukciami a umožňuje hráčovi vybrať medzi pokračovaním a ukončením hry.
 
 ### nastavenieObtiaznosti()
 
@@ -141,9 +156,21 @@ public void nastavenieObtiaznosti() {
 }
 ```
 
-Popis:
+Táto Java metóda `nastavenieObtiaznosti()` vykonáva nasledujúce úlohy:
 
-- dopísať
+1. **Definícia možností pre obtiažnosť:**
+   - Vytvára pole reťazcov `vyberObtiaznost` obsahujúce možnosti pre hráča: "Vlastná", "Ťažká", "Stredná", "Ľahká".
+
+2. **Zobrazenie dialógového okna s výberom obtiažnosti:**
+   - Používa `JOptionPane.showOptionDialog()` na zobrazenie dialógového okna, v ktorom hráč vyberá obtiažnosť hry.
+
+3. **Spracovanie výberu hráča pomocou `switch`:**
+   - Na základe výberu hráča v dialógovom okne používa `switch` pre vetvenie na príslušnú časť kódu.
+   - Ak hráč vyberie "Vlastná" (hodnota `0`), spúšťa metódu `vlastnaObtiaznost()`.
+   - Pre prípady "Ťažká", "Stredná" a "Ľahká" spúšťa metódu `spustiHru()` s príslušnými parametrami.
+   - V prípade nečakaného výberu (default) program sa ukončuje pomocou `System.exit(0)`.
+
+Celkovo táto metóda umožňuje hráčovi zvoliť obtiažnosť hry a podľa toho spustiť príslušnú časť kódu.
 
 ### vlastnaObtiaznost()
 
@@ -203,9 +230,31 @@ public void vlastnaObtiaznost() {
 }
 ```
 
-Popis:
+Táto Java metóda `vlastnaObtiaznost()` vykonáva nasledujúce úlohy:
 
-- dopísať
+1. **Vytvorenie textových polí pre vstup od hráča:**
+   - Vytvára dve textové polia (`JTextField`) pre vstup od hráča: `pocetPrekazokPolicko` a `tempoHryPolicko`.
+
+2. **Nastavenie šedého textu a obsahu pre `tempoHryPolicko`:**
+   - Nastavuje šedú farbu textu a prednastavený text "Zadaj 1 až 10" do textového poľa `tempoHryPolicko`.
+   - Implementuje metódu `FocusAdapter` na zmenu textu v poli pri získaní alebo stratí fókus.
+
+3. **Vytvorenie panelu s komponentami na vstupe:**
+   - Vytvára panel (`JPanel`) s mriežkovým rozložením 2x2 obsahujúci popisky a textové polia pre počet prekážok a tempo hry.
+
+4. **Nastavenie textu tlačidiel v dialógovom okne:**
+   - Nastavuje texty tlačidiel v dialógovom okne na "Hrať" a "Späť".
+
+5. **Zobrazenie dialógového okna s potvrdením:**
+   - Používa `JOptionPane.showConfirmDialog()` na zobrazenie dialógového okna s panelom pre vstup od hráča.
+
+6. **Spracovanie výberu hráča:**
+   - Ak hráč stlačí tlačidlo "Hrať", snaží sa získať hodnoty zo vstupných polí.
+   - Ak sa hodnoty podarí získať, konvertuje ich na celočíselné hodnoty a volá metódu `spustiHru()` s týmito hodnotami.
+   - Ak sa získanie hodnôt neúspešne skončí (napr. vstup nie je číslo), zobrazuje chybovú správu a znovu volá `vlastnaObtiaznost()`.
+   - Ak hráč stlačí tlačidlo "Späť", vráti sa na obrazovku s výberom obtiažnosti volaním `nastavenieObtiaznosti()`.
+
+Celkovo táto metóda umožňuje hráčovi nastaviť vlastnú obtiažnosť hry zadávaním počtu prekážok a tempa hry prostredníctvom dialógového okna.
 
 ### prevratenieRychlosti(int tempoHry)
 
@@ -224,9 +273,26 @@ public int prevratenieRychlosti(int tempoHry) {
 } 
 ```
 
-Popis:
+Tento kód implementuje metódu s názvom `prevratenieRychlosti(int tempoHry)`, ktorá má za úlohu transformovať zadané tempo hry na rýchlosť používanú v hre. Tu je popis toho, ako táto metóda funguje:
 
-- dopísať
+1. **Definícia hodnôt pre rýchlosť:**
+   - Vytvára tri premenné: `minRychlost` s hodnotou 25, `maxRychlost` s hodnotou 300 a `prevratenaRychlost`, ktorá bude slúžiť na uchovávanie výslednej transformovanej rýchlosti.
+
+2. **Podmienkový príkaz:**
+   - Kontroluje, či zadané tempo hry (`tempoHry`) je väčšie alebo rovnaké ako 10.
+   - Ak áno, nastavuje `prevratenaRychlost` na hodnotu 1.
+
+3. **Inak vetva:**
+   - Ak je tempo hry menšie ako 10, vypočítava `prevratenaRychlost` podľa vzorca: `120 - tempoHry * 12`.
+
+4. **Ohraničenie rýchlosti:**
+   - Používa `Math.min` a `Math.max` na ohraničenie `prevratenaRychlost` medzi hodnotami `minRychlost` a `maxRychlost`.
+   - Týmto sa zabezpečuje, aby rýchlosť bola v určenom rozsahu (25 až 300).
+
+5. **Návratová hodnota:**
+   - Vracia transformovanú a ohraničenú rýchlosť (`prevratenaRychlost`) ako výsledok metódy.
+
+Celkovo táto metóda prevráti (transformuje) zadané tempo hry na rýchlosť, ktorá je následne ohraničená v stanovenom rozsahu.
 
 ### prehralSi(Snake snake, Prekazka prekazka)
 
@@ -250,9 +316,24 @@ public void prehralSi(Snake snake, Prekazka prekazky) {
 }
 ```
 
-Popis:
+Tento kód implementuje metódu s názvom `prehralSi(Snake snake, Prekazka prekazky)`, ktorá sa volá v prípade, že hráč prehral hru. Tu je vysvetlenie toho, ako táto metóda funguje:
 
-- dopísať
+1. **Zvuk konca hry:**
+   - Spúšťa zvuk konca hry pomocou metódy `zvukKoncaHry()` z objektu `zvuk`.
+
+2. **Zastavenie herného cyklu:**
+   - Volá metódu `stop()` na hernom cykle hada, ktorý je predaný ako parameter (`snake`).
+
+3. **Zobrazenie dialógového okna s možnosťami:**
+   - Vytvára pole možností pre hráča: "Opakovať", "Skončiť", "Zmeniť obtiažnosť".
+   - Používa `JOptionPane.showOptionDialog()` na zobrazenie dialógového okna s otázkou, čo hráč chce urobiť po prehre.
+
+4. **Spracovanie výberu hráča:**
+   - Ak hráč vyberie "Opakovať" (hodnota `JOptionPane.YES_OPTION`), volá metódu `restartujHru()` s objektami `snake` a `prekazky` ako parametrami.
+   - Ak hráč vyberie "Zmeniť obtiažnosť" (hodnota `JOptionPane.CANCEL_OPTION`), zatvára predchádzajúce herné okno a volá metódu `nastavenieObtiaznosti()`.
+   - Ak hráč vyberie "Skončiť" alebo zatvorí dialógové okno, program sa ukončuje pomocou `System.exit(0)`.
+
+Celkovo táto metóda reaguje na prehru hráča, spúšťa zvuk, zastavuje herný cyklus a ponúka mu možnosti ako reagovať na prehru (opakovať, skončiť alebo zmeniť obtiažnosť).
 
 ### spustiHru(int pocetPrekazok, int rychlostHry)
 
@@ -276,9 +357,27 @@ public void spustiHru(int pocetPrekazok, int rychlostHry) {
 }
 ```
 
-Popis:
+Tento kód implementuje metódu s názvom `spustiHru(int pocetPrekazok, int rychlostHry)`, ktorá sa stará o inicializáciu a spustenie hry Snake s určitými parametrami. Tu je vysvetlenie toho, ako táto metóda funguje:
 
-- dopísať
+1. **Definícia parametrov a veľkosti plochy:**
+   - Vytvára premenné `sirkaPlochy` a `vyskaPlochy` pre šírku a výšku herného okna, a `velkostPolicka` pre veľkosť jedného políčka na hracej ploche.
+
+2. **Vytvorenie prekážky:**
+   - Inicializuje objekt `Prekazka` s danými parametrami (šírka, výška, veľkosť políčka, počet prekážok).
+   - Generuje náhodné prekážky pomocou metódy `generujNahodnePrekazky()`.
+
+3. **Vytvorenie herného okna (`JFrame`):**
+   - Inicializuje objekt `JFrame` s názvom "Snake - Semestrálna práca - Filip Klein".
+   - Nastavuje akciu ukončenia programu na zavretie tohto okna.
+
+4. **Vytvorenie hada (`Snake`):**
+   - Inicializuje objekt `Snake` s danými parametrami (šírka, výška, rýchlosť, počet prekážok, veľkosť políčka).
+
+5. **Pridanie hada do herného okna a zobrazenie:**
+   - Pridáva objekt `Snake` do herného okna (`JFrame`).
+   - Balíčky (pack) herné okno, umiestňuje ho na stred obrazovky, zakazuje zmenu veľkosti a nastavuje jeho viditeľnosť.
+
+Celkovo táto metóda inicializuje herné prostredie, vytvára objekty prekážok a hada, a spúšťa hru v novom hernom okne.
 
 ### restartujHru(Snake snake, Prekazka prekazka)
 
@@ -306,9 +405,26 @@ public void restartujHru(Snake snake, Prekazka prekazky) {
 }
 ```
 
-Popis:
+Tento kód implementuje metódu s názvom `restartujHru(Snake snake, Prekazka prekazky)`, ktorá sa stará o reštartovanie hry po prehre hráča. Tu je vysvetlenie toho, ako táto metóda funguje:
 
-- dopísať
+1. **Nastavenie nových hodnôt pre hada:**
+   - Nastavuje novú polohu hlavy hada volaním metódy `generujNahodnePolicko()` na objekte `snake`.
+   - Vyprázdňuje telo hada pomocou `clear()` na získanom liste teloHada.
+   - Umisťuje nové jedlo na hraciu plochu volaním `umiestniJedlo()` na objekte `snake`.
+
+2. **Nastavenie nových hodnôt pre prekážky:**
+   - Vyprázdňuje existujúce prekážky pomocou `clear()` na získanom liste prekazky.
+   - Generuje nové náhodné prekážky volaním `generujNahodnePrekazky()` s aktuálnymi parametrami na objekte `prekazky`.
+
+3. **Overenie existencie prekážok:**
+   - Ak sú nové prekážky prázdne (žiadne sa nepodarilo vygenerovať), opätovne volá metódu `generujNahodnePrekazky()` na objekte `prekazky`.
+
+4. **Nastavenie hodnôt pre reštart hry:**
+   - Nastavuje rôzne hodnoty objektu `snake` na pôvodné stavy, vrátane zastavenia hry, resetovania rýchlostí, a spustenia herného cyklu.
+
+Celkovo táto metóda umožňuje reštartovať hru po prehre hráča s novým postavením hada, novými prekážkami a nastavením herných premenných.
+
+---
 
 ## HraciaPlocha.java
 
@@ -328,9 +444,20 @@ public HraciaPlocha(int sirkaPlochy, int vyskaPlochy, int velkostPolicka, Snake 
 }
 ```
 
-Popis:
+Tento kód definuje triedu s názvom `HraciaPlocha`, ktorá má niekoľko atribútov a konštruktor inicializujúci tieto atribúty. Tu je vysvetlenie kódu:
 
-- dopísať
+1. **Atribúty triedy:**
+   - `sirkaPlochy`: Atribút, ktorý uchováva šírku hracej plochy.
+   - `vyskaPlochy`: Atribút, ktorý uchováva výšku hracej plochy.
+   - `velkostPolicka`: Atribút, ktorý reprezentuje veľkosť jedného políčka na hracej ploche.
+   - `snake`: Atribút, ktorý predstavuje inštanciu triedy `Snake` a je použitý na manipuláciu s hadom vo vnútri tejto hracej plochy.
+
+2. **Konštruktor triedy:**
+   - Konštruktor má rovnaký názov ako trieda a slúži na inicializáciu atribútov triedy.
+   - Parametre konštruktora sú šírka (`sirkaPlochy`), výška (`vyskaPlochy`), veľkosť políčka (`velkostPolicka`) a inštancia triedy `Snake` (`snake`).
+   - Priradzuje hodnoty parametrov k príslušným atribútom triedy.
+
+Takýto konštruktor umožňuje vytvoriť inštanciu triedy `HraciaPlocha` s definovanými rozmiermi hracej plochy, veľkosťou políčka a priradeným hadom.
 
 ### vykresli(Graphics g)
 
@@ -344,9 +471,19 @@ for (int i = 0; i < this.sirkaPlochy / velkostPolicka; i++) {
 }
 ```
 
-Popis:
+Tento kód obsahuje cyklus `for`, ktorý kreslí mriežku na hracej ploche. Tu je vysvetlenie toho, ako tento kód funguje:
 
-- dopísať
+1. **Iniciácia cyklu:**
+   - `for (int i = 0; i < this.sirkaPlochy / velkostPolicka; i++)`: Inicializuje premennú `i` na 0. Cyklus sa opakuje, pokiaľ `i` je menšie ako šírka plochy delená veľkosťou políčka.
+
+2. **Nastavenie farby:**
+   - `g.setColor(new Color(245, 205, 167))`: Nastavuje farbu kreslenia na svetložltú pomocou objektu `Color`. Táto farba bude použitá pre čiary mriežky.
+
+3. **Kreslenie vertikálnych a horizontálnych čiar:**
+   - `g.drawLine(i * velkostPolicka, 0, i * velkostPolicka, this.vyskaPlochy)`: Kreslí vertikálne čiary mriežky od hora až na spodok hracej plochy na pozícii `i * velkostPolicka`.
+   - `g.drawLine(0, i * velkostPolicka, this.sirkaPlochy, i * velkostPolicka)`: Kreslí horizontálne čiary mriežky zľava doprava na pozícii `i * velkostPolicka`.
+
+Celkovo tento cyklus vytvára efekt mriežky na hracej ploche s vertikálnymi a horizontálnymi čiarami, ktoré majú svetložltú farbu.
 
 #### hracie pole šachovnicovom štýle
 
@@ -363,9 +500,21 @@ for (int i = 0; i < this.sirkaPlochy / velkostPolicka; i++) {
 }
 ```
 
-Popis:
+Tento kód vytvára šachovnicový vzor na hracej ploche pomocou dvoch vnorených cyklov `for` a vykresľuje obdĺžniky s rôznymi farbami. Tu je vysvetlenie toho, ako tento kód funguje:
 
-- dopísať
+1. **Dva vnorené cykly:**
+   - `for (int i = 0; i < this.sirkaPlochy / velkostPolicka; i++)`: Vnútorný cyklus prechádza cez stĺpce hracej plochy.
+   - `for (int j = 0; j < this.vyskaPlochy / velkostPolicka; j++)`: Vonkajší cyklus prechádza cez riadky hracej plochy.
+
+2. **Podmienkový príkaz pre farbu obdĺžniku:**
+   - `if ((i + j) % 2 == 0)`: Ak sú súčet `i` a `j` párny, nastaví farbu obdĺžniku na svetlejší odtieň.
+   - `else`: V opačnom prípade nastaví farbu obdĺžniku na tmavší odtieň.
+
+3. **Nastavenie farby a vykreslenie obdĺžnikov:**
+   - `g.setColor(new Color(255, 218, 142))` alebo `g.setColor(new Color(250, 213, 138))`: Nastavuje farbu kreslenia na svetlú alebo tmavú farbu v závislosti od podmienky.
+   - `g.fillRect(i * this.velkostPolicka, j * this.velkostPolicka, this.velkostPolicka, this.velkostPolicka)`: Kreslí obdĺžnik na hracej ploche na pozícii `[i * velkostPolicka, j * velkostPolicka]` s danou veľkosťou.
+
+Celkovo tento kód vytvára šachovnicový vzor na hracej ploche pomocou svetlých a tmavých obdĺžnikov.
 
 #### vykreslenie informácií o hre
 
@@ -391,9 +540,21 @@ if (this.snake.getHraPozastavena() && !this.snake.getCasZastaveny()) {
 }
 ```
 
-Popis:
+1. **Formátovanie bodového textu:**
+   - `String.format("Dĺžka hada: %d | Čas v hre: %d s", this.snake.getTeloHada().size(), this.snake.getCasHry() / 1000)`: Vytvára textový reťazec s informáciami o dĺžke hada a čase strávenom v hre.
 
-- dopísať
+2. **Nastavenie farby a fontu pre text:**
+   - `g.setColor(Color.blue)`: Nastavuje farbu textu na modrú.
+   - `g.setFont(new Font("Arial", Font.BOLD, 16))`: Nastavuje font textu na Arial, tučný, veľkosť 16 bodov.
+
+3. **Vykreslenie bodového textu:**
+   - `g.drawString(bodovyText, this.velkostPolicka - 16, this.velkostPolicka)`: Vykresľuje bodový text na hracej ploche na špecifikovanej pozícii.
+
+4. **Správa času:**
+   - Ak je hra pozastavená a čas nie je zastavený, nastaví aktuálny čas ako čas pozastavenia a zastaví čas.
+   - Ak nie je hra pozastavená a čas je zastavený, pokračuje v čase od momentu, kedy bola hra zastavená. Nastavuje čas od spustenia hry na hodnotu pred zastavením a spúšťa čas.
+
+Celkovo tento kód riadi zobrazenie informácií o stave hry a riadi aj čas v prípade, že je hra pozastavená.
 
 #### kontroluje sa, či hra je pozastavená & vypísanie hlášok
 
@@ -413,9 +574,18 @@ if (this.snake.getKoniecHry()) {
 }
 ```
 
-Popis:
+Tento kód zabezpečuje zobrazenie dodatočných informácií o stave hry a eventuálne vypisuje hlášky, napríklad o konci hry alebo o tom, že hra je pozastavená. Tu je vysvetlenie toho, ako tento kód funguje:
 
-- dopísať
+1. **Aktualizácia času hry a výpis bodového textu:**
+   - `if (!this.snake.getHraPozastavena())`: Kontroluje, či hra nie je pozastavená. Ak nie je, aktualizuje čas hry a vypisuje bodový text.
+
+2. **Vypisovanie hlášok:**
+   - `if (this.snake.getKoniecHry())`: Ak je nastavená podmienka konca hry, vypíše sa hláška "Koniec hry!" v červenej farbe.
+   - `else if (this.snake.getHraPozastavena())`: Ak je hra pozastavená, vypíše sa hláška o tom, že hra je pozastavená, a uvádza sa, že klávesa ESC sa dá použiť na návrat do hry.
+
+Celkovo tento kód pridáva do hry dodatočné vizuálne informácie, ako napríklad texty o stave hry a rôzne hlášky pre hráča.
+
+---
 
 ## Jedlo.java
 
@@ -432,9 +602,19 @@ public void umiestniJedlo(int sirkaPlochy, int vyskaPlochy, int velkostPolicka, 
 }
 ```
 
-Popis:
+Táto metóda `umiestniJedlo` slúži na umiestnenie jedla na hracej ploche, s respektovaním prípadných prekážok. Tu je vysvetlenie toho, ako kód funguje:
 
-- dopísať
+1. **Generovanie náhodných súradníc:**
+   - `int x = nahodne.nextInt(sirkaPlochy / velkostPolicka);`: Generuje náhodnú hodnotu `x` medzi 0 a `sirkaPlochy / velkostPolicka`.
+   - `int y = nahodne.nextInt(vyskaPlochy / velkostPolicka);`: Generuje náhodnú hodnotu `y` medzi 0 a `vyskaPlochy / velkostPolicka`.
+
+2. **Vytvorenie nového políčka pre jedlo:**
+   - `this.jedlo = new Policko(x, y);`: Vytvára novú inštanciu triedy `Policko` s náhodnými súradnicami, ktorá predstavuje umiestnenie jedla.
+
+3. **Overenie kolízie s prekážkami:**
+   - `while (this.koliziaJedlaSPrekazkou(prekazky));`: Používa metódu `koliziaJedlaSPrekazkou` na overenie, či nové jedlo nie je umiestnené na políčku obsadenom prekážkou. Ak áno, generuje sa nové jedlo a overuje sa znova.
+
+Celkovo táto metóda zabezpečuje, aby jedlo bolo náhodne umiestnené na hracej ploche a aby sa nevyskytovalo na políčku obsadenom prekážkou.
 
 ### koliziaJedlaSPrekazkou(Prekazka prekazky)
 
@@ -449,9 +629,7 @@ public boolean koliziaJedlaSPrekazkou(Prekazka prekazky) {
 }
 ```
 
-Popis:
-
-- dopísať
+Metóda `koliziaJedlaSPrekazkou` slúži na overenie, či súradnice aktuálneho jedla kolidujú s nejakou prekážkou na hracej ploche. Metóda prechádza všetky políčka v zozname prekážok a porovnáva súradnice jedla s každou prekážkou. Ak nájde zhodu, vráti `true`, čo indikuje, že dochádza k kolízii jedla s prekážkou. V opačnom prípade vráti `false`.
 
 ### vykresli(Graphics g, int velkostPolicka)
 
@@ -466,9 +644,11 @@ public void vykresli(Graphics g, int velkostPolicka) {
 }
 ```
 
-Popis:
+Metóda `vykresli` slúži na vykreslenie grafického obrázku jablka na hracej ploche. Metóda využíva `ImageIO` na načítanie obrázku jablka z umiestnenia zdrojového súboru. Následne sa tento obrázok vykreslí na hraciu plochu na súradnice, kde sa momentálne nachádza jedlo. V prípade, že načítanie obrázku zlyhá, metóda vypíše informácie o výnimke na konzolu pomocou `e.printStackTrace()`.
 
-- dopísať
+Výnimka `IOException` sa tu môže vyskytnúť v prípade, že načítanie obrázku z nejakej príčiny zlyhá.
+
+---
 
 ## Manazer.java
 
@@ -515,9 +695,26 @@ public void keyPressed(KeyEvent e) {
 }
 ```
 
-Popis:
+Metóda `keyPressed` sa spúšťa pri stlačení klávesy a zabezpečuje riadenie pohybu hada a pozastavenie hry. Tu je vysvetlenie toho, ako táto metóda funguje:
 
-- dopísať
+1. **Pozastavenie hry stlačením klávesy ESC:**
+   - `if (e.getKeyCode() == KeyEvent.VK_ESCAPE)`: Kontroluje, či bol stlačený kláves ESC.
+   - `this.snake.setHraPozastavena(!this.snake.getHraPozastavena())`: Ak áno, prepína stav pozastavenia hry.
+
+2. **Ovládanie pohybu hada:**
+   - `else if (!this.snake.getHraPozastavena())`: Ak hra nie je pozastavená, vykonáva sa ovládanie pohybu hada.
+   - `Smer novyPohyb = null;`: Inicializuje sa premenná pre nový smer pohybu hada.
+
+   - **Rozpoznávanie stlačených kláves:**
+     - `switch (e.getKeyCode())`: Používa switch pre rozpoznávanie stlačených kláves.
+       - V prípade stlačenia šípok alebo kláves W, A, S, D, nastavuje sa nový smer pohybu hada podľa príslušnej klávesy.
+
+   - **Kontrola platnosti nového smeru:**
+     - `if (novyPohyb != null)`: Kontroluje, či bol nastavený platný nový smer.
+       - `this.snake.setRychlostX(novyPohyb.getRychlostX())`: Nastavuje novú rýchlosť hada podľa nového smeru v osi X.
+       - `this.snake.setRychlostY(novyPohyb.getRychlostY())`: Nastavuje novú rýchlosť hada podľa nového smeru v osi Y.
+
+Týmto spôsobom metóda `keyPressed` riadi pohyb hada a pozastavenie hry v závislosti od stlačených kláves.
 
 ### vykresliHada(Graphics g)
 
@@ -554,9 +751,11 @@ public void vykresliHada(Graphics g) {
 }
 ```
 
-Popis:
+Metóda `vykresliHada` sa používa na vykreslenie grafického obrázku hada na hracej ploche. Tu je vysvetlenie toho, ako táto metóda funguje:
 
-- dopísať
+Táto metóda načíta obrázky hada pre rôzne smery pohybu (hore, dole, vľavo, vpravo) a potom vykreslí obrázok hlavy hada na hraciu plochu v závislosti od smeru pohybu. Ak nie je určený žiadny smer pohybu (čo sa môže stať na začiatku hry), použije sa obrázok hlavy hada smerujúcej hore. V prípade, že načítanie obrázkov zlyhá, informácie o výnimke sa vypíšu na konzolu pomocou `e.printStackTrace()`.
+
+---
 
 ## Policko.java
 
@@ -588,9 +787,9 @@ public class Policko {
 }
 ```
 
-Popis:
+`Policko` je jednoduchá trieda, ktorá predstavuje jedno políčko na hracej ploche. Každé políčko má svoje súradnice `x` a `y`, a obsahuje metódy na získanie a nastavenie týchto súradníc. Táto trieda slúži na reprezentáciu polohy objektov (napr. hada, jedla, prekážok) na hracej ploche.
 
-- dopísať
+---
 
 ## Prekazka.java
 
@@ -614,9 +813,7 @@ public Prekazka(int sirkaPlochy, int vyskaPlochy, int velkostPolicka, int pocetP
 }
 ```
 
-Popis:
-
-- dopísať
+Konštruktor triedy `Prekazka` inicializuje tieto atribúty na základe poskytnutých parametrov. Vytvára sa nový zoznam prekážok a následne sa generujú náhodné prekážky pomocou metódy `generujNahodnePrekazky`.
 
 ### generujNahodnePrekazky(int sirkaPlochy, int vyskaPlochy, int velkostPolicka, int pocetPrekazok)
 
@@ -637,9 +834,9 @@ public void generujNahodnePrekazky(int sirkaPlochy, int vyskaPlochy, int velkost
 }
 ```
 
-Popis:
+Metóda `generujNahodnePrekazky` slúži na náhodnú generáciu prekážok na hracej ploche.
 
-- dopísať
+V tejto metóde sa postupne generuje požadovaný počet prekážok. Pri generovaní sa používa náhodný generátor na získanie súradníc `x` a `y`. Následne sa skontroluje, či nová prekážka nekolízie s hlavou hada pomocou metódy `koliziaHadaSPrekazkou`. Ak áno, generuje sa nová prekážka, kým nebudú súradnice unikátne. Nakoniec sa nová prekážka pridáva do zoznamu prekazky. Týmto spôsobom sa vytvárajú náhodné a nekolíziu s hadom prekážky na hracej ploche.
 
 ### koliziaHadaSPrekazkou(Policko hlavaHada)
 
@@ -654,9 +851,9 @@ public boolean koliziaHadaSPrekazkou(Policko hlavaHada) {
 }
 ```
 
-Popis:
+Metóda `koliziaHadaSPrekazkou` slúži na skontrolovanie, či hlava hada koliduje s niektorou z prekážok na hracej ploche.
 
-- dopísať
+V tejto metóde sa prechádzajú všetky políčka prekážok v zozname `prekazky`. Pre každú prekážku sa volá metóda `Snake.kolizia(hlavaHada, prekazkaPolicko)`, ktorá zisťuje, či dochádza ku kolízii medzi hlavou hada a aktuálnou prekážkou. Ak áno, metóda vráti `true`, čo znamená, že kolízia bola zistená. Ak žiadna kolízia nebol zistená pre žiadnu prekážku, vráti sa `false`.
 
 ### vykresli (Graphics g, int velkostPolicka)
 
@@ -669,9 +866,9 @@ public void vykresli(Graphics g, int velkostPolicka) {
 }
 ```
 
-Popis:
+Metóda `vykresli` slúži na vykreslenie prekážok na hracej ploche. Pre každú prekážku v zozname `prekazky` vykreslí čierny 3D obdĺžnik na príslušných súradniciach. Táto metóda slúži na vizuálne zobrazenie prekážok v hernom prostredí.
 
-- dopísať
+---
 
 ## Smer.java
 
@@ -700,43 +897,20 @@ public enum Smer {
 }
 ```
 
-Popis:
+Definícia enumu `Smer` obsahuje štyri hodnoty reprezentujúce základné smery pohybu:
 
-- dopísať
+- `HORE`: Predstavuje pohyb smerom nahor.
+- `DOLE`: Predstavuje pohyb smerom nadol.
+- `DOLAVA`: Predstavuje pohyb smerom doľava.
+- `DOPRAVA`: Predstavuje pohyb smerom doprava.
+
+Kód enumu obsahuje dva atribúty `rychlostX` a `rychlostY`, ktoré určujú, ako veľmi sa zmení poloha objektu (v tomto prípade hada) pri pohybe v danom smere. Konštruktor enumu inicializuje tieto atribúty na základe poskytnutých hodnôt.
+
+Taktiež enum obsahuje metódy `getRychlostX` a `getRychlostY`, ktoré slúžia na získanie rýchlosti pohybu hada v ose X resp. Y pre daný smer.
+
+---
 
 ## Snake.java
-
-### atribúty
-
-```java
-private int sirkaPlochy;
-private int vyskaPlochy;
-private int velkostPolicka;
-private int pocetPrekazok;
-private int rychlostX;
-private int rychlostY;
-
-private boolean koniecHry = false;
-private boolean hraPozastavena = false;
-private long casOdStartu;
-private long casKedyPozastavena;
-private boolean casZastaveny;
-private long casHry;
-
-private Zvuk zvuk;
-private Policko hlavaHada;
-private HraciaPlocha hraciaPlocha;
-private ArrayList<Policko> teloHada;
-private Jedlo jedlo;
-private Random nahodne;
-private Timer hernyCyklus;
-private Prekazka prekazky;
-private Manazer manazer;
-```
-
-Popis:
-
-- dopísať
 
 ### konštruktor Snake(int sirkaPlochy, int vyskaPlochy, int rychlostHry, int pocetPrekazok, int velkostPolicka)
 
@@ -775,9 +949,15 @@ public Snake(int sirkaPlochy, int vyskaPlochy, int rychlostHry, int pocetPrekazo
 }
 ```
 
-Popis:
+Konštruktor triedy `Snake` inicializuje viaceré atribúty pre inštanciu hada a nastavuje herné parametre. Tu je stručný popis časti konštruktora:
 
-- dopísať
+- **Inicializácia atribútov**: Nastavujú sa atribúty, ako je šírka a výška hracej plochy, počet prekážok, veľkosť políčka, objekty pre zvuk a náhodné generovanie.
+
+- **Nastavenie JPanel**: Hracia plocha (`JPanel`) je inicializovaná a nastavená na danú šírku a výšku. Taktiež je pridávaný "key listener" pre zachytávanie klávesových udalostí a je nastavovaná ako "focusable", čo umožňuje JPanelu prijímať vstupy.
+
+- **Inicializácia herných atribútov**: Inicializácia rôznych herných atribútov, ako sú hracia plocha, prekážky, hlava hada, tele hada, jedlo, rýchlosti, a ďalšie. Tiež je spúšťaný herný cyklus, ktorý je implementovaný pomocou `Timer` a implementuje rozhranie `ActionListener`.
+
+Celkovo, konštruktor vytvára inštanciu hry so všetkými potrebnými atribútmi a inicializáciami pre správne fungovanie hry hada.
 
 ### paintComponeent(Graphics g)
 
@@ -788,9 +968,13 @@ public void paintComponent(Graphics g) {
 }
 ```
 
-Popis:
+Metóda `paintComponent` je súčasťou metódy pre kreslenie (rendering) v komponente `JPanel`. V tomto prípade táto metóda vykonáva kreslenie grafiky na komponente hada.
 
-- dopísať
+- `super.paintComponent(g)`: Volanie nadradenej metódy zabezpečuje, aby sa pred vykresľovaním aktualizoval stav komponenty a vyčistili sa predchádzajúce kresby, čo je dôležité pre správne fungovanie kreslenia.
+
+- `this.vykresli(g)`: Volanie metódy `vykresli` na vykreslenie vizuálnych prvkov hada. Táto metóda zrejme obsahuje kód na vykreslenie hada, prekážok, jedla a ďalších grafických prvkov na komponente.
+
+Celkovo, táto metóda je dôležitá pre správne vizuálne zobrazenie herných prvkov v komponente hada.
 
 ### vykresli (Graphics g)
 
@@ -809,9 +993,21 @@ public void vykresli(Graphics g) {
 }
 ```
 
-Popis:
+Metóda `vykresli` vykonáva kreslenie rôznych prvkov hry na grafický kontext `g`. Tu je krátky popis kódu tejto metódy:
 
-- dopísať
+- `this.hraciaPlocha.vykresli(g)`: Vykreslenie hracej plochy na základe jej definície a parametrov.
+
+- `this.jedlo.vykresli(g, this.velkostPolicka)`: Vykreslenie jedla (často reprezentovaného ikonou, obrázkom alebo farbou) na hernú plochu.
+
+- `this.manazer.vykresliHada(g)`: Vykreslenie hada na základe jeho aktuálnej pozície a stavu.
+
+- `this.prekazky.vykresli(g, this.velkostPolicka)`: Vykreslenie prekážok na hernú plochu.
+
+- Vykreslenie tela hada:
+  - Nastavenie farby na novú farbu pre tela hada (`new Color(108, 220, 156)`).
+  - Pre každý segment hada v tele (`castHada`) sa vykresľuje ovál na hernú plochu.
+
+Celkovo, metóda `vykresli` má na starosti vizuálne zobrazenie rôznych prvkov hry na grafický kontext, čo zahrňuje hraciu plochu, jedlo, hada, prekážky a telo hada.
 
 ### umiestniJedlo()
 
@@ -821,9 +1017,11 @@ public void umiestniJedlo() {
 }
 ```
 
-Popis:
+Metóda `umiestniJedlo` slúži na umiestnenie nového jedla na hernú plochu. Táto metóda volá metódu `umiestniJedlo` na objekte `jedlo`, ktorý reprezentuje jedlo v hre.
 
-- dopísať
+Parametre tejto metódy (sirkaPlochy, vyskaPlochy, velkostPolicka, prekazky) sú pravdepodobne použité na určenie vhodnej pozície pre nové jedlo tak, aby sa zabránilo kolízii s prekážkami a inými časťami hry.
+
+Celkovo, táto metóda zabezpečuje, že jedlo je umiestnené na hernú plochu podľa špecifikovaných pravidiel alebo logiky hry.
 
 ### pohyb()
 
@@ -837,9 +1035,15 @@ if (kolizia(this.hlavaHada, this.jedlo.getPolicko())) {
 }
 ```
 
-Popis:
+Táto podmienka slúži na kontrolu kolízie medzi hlavou hada a jedlom. Ak sa hlava hada dostane na políčko, kde sa nachádza jedlo, vykoná sa nasledujúci kód:
 
-- dopísať
+- `this.teloHada.add(new Policko(this.jedlo.getPolicko().getX(), this.jedlo.getPolicko().getY()));`: Pridá nový segment do tela hada na pozíciu jedla. To znamená, že had sa "rozšíri" o jednu časť.
+
+- `this.umiestniJedlo();`: Znovu umiestni nové jedlo na hernú plochu po jeho zjedení.
+
+- `this.zvuk.zvukJedla();`: Spustí zvuk, ktorý indikuje, že had práve zjedol jedlo.
+
+Celkovo, tento blok kódu sa stará o správanie hry po tom, ako had zje jedlo, vrátane aktualizácie tela hada, umiestnenia nového jedla a spustenia zvuku.
 
 #### časť jedla sa presunie na jej predchádzajúcu pozíciu
 
@@ -855,9 +1059,15 @@ for (int i = this.teloHada.size() - 1; i >= 0; i--) {
 }
 ```
 
-Popis:
+Tento blok kódu sa zaoberá aktualizáciou polôh častí tela hada na základe jeho súčasnej polohy a pohybu.
 
-- dopísať
+- `for (int i = this.teloHada.size() - 1; i >= 0; i--)`: Cyklus prechádza cez všetky časti tela hada od poslednej (konca) po prvú (hlavu).
+
+- `if (i == 0) { ... }`: Ak sme prišli k hlave hada, aktualizujeme jej polohu na rovnakú ako hlava hada.
+
+- `else { ... }`: Pre ostatné časti tela hada nastavíme ich polohu na polohu predchádzajúcej časti tela. Tým sa dosiahne efekt "posúvania" častí tela za hlavou hada.
+
+Celkovo tento blok kódu zabezpečuje aktualizáciu polôh častí tela hada v smeru jeho pohybu.
 
 #### kontrola kolízie s okrajmi hracej plochy
 
@@ -867,9 +1077,14 @@ if (this.hlavaHada.getX() < 0 || this.hlavaHada.getX() >= this.sirkaPlochy / thi
 }
 ```
 
-Popis:
+Táto podmienka kontroluje, či hlava hada vyšla mimo hracej plochy. Ak áno, nastaví premennú `koniecHry` na hodnotu `true`, čo znamená, že hra skončila. Podmienka má štyri časti:
 
-- dopísať
+1. `this.hlavaHada.getX() < 0`: Kontroluje, či sa hlava hada nachádza za ľavým okrajom hracej plochy.
+2. `this.hlavaHada.getX() >= this.sirkaPlochy / this.velkostPolicka`: Kontroluje, či sa hlava hada nachádza za pravým okrajom hracej plochy.
+3. `this.hlavaHada.getY() < 0`: Kontroluje, či sa hlava hada nachádza nad horným okrajom hracej plochy.
+4. `this.hlavaHada.getY() >= this.vyskaPlochy / this.velkostPolicka`: Kontroluje, či sa hlava hada nachádza pod dolným okrajom hracej plochy.
+
+Ak aspoň jedna z týchto podmienok platí, znamená to, že hlava hada vyšla mimo hracej plochy, a preto je nastavená premenná `koniecHry` na `true`.
 
 #### pohyb hlavyHada
 
@@ -878,9 +1093,12 @@ this.hlavaHada.setX(this.hlavaHada.getX() + rychlostX);
 this.hlavaHada.setY(this.hlavaHada.getY() + rychlostY);
 ```
 
-Popis:
+Tieto dva riadky kódu aktualizujú polohu hlavy hada na základe aktuálnych hodnôt rýchlosti (`rychlostX` a `rychlostY`).
 
-- dopísať
+- `this.hlavaHada.getX() + rychlostX`: Pripočíta hodnotu `rychlostX` k aktuálnej x-ovej pozícii hlavy hada, čím sa posunie horizontálne.
+- `this.hlavaHada.getY() + rychlostY`: Pripočíta hodnotu `rychlostY` k aktuálnej y-ovej pozícii hlavy hada, čím sa posunie vertikálne.
+
+Tieto operácie simulujú pohyb hada na hracej ploche na základe aktuálnych hodnôt rýchlosti v horizontálnom a vertikálnom smere.
 
 #### kontrola kolízie hlavyHada s telom
 
@@ -892,9 +1110,9 @@ for (Policko castHada : this.teloHada) {
 }
 ```
 
-Popis:
+Tento blok kódu kontroluje, či hlava hada koliduje s niektorým z členov jeho tela. Pre každý segment tela hada sa kontroluje kolízia s hlavou hada. Ak sa zistí kolízia, nastavuje sa premenná `koniecHry` na hodnotu `true`, čo znamená koniec hry.
 
-- dopísať
+V praxi to znamená, že ak hlava hada narazí do svojho tela, hra sa skončí. To je jedna z podmienok pre ukončenie hry v prípade samozrážky hada so sebou.
 
 #### kontrola kolízie hlavyHada s prekážkou
 
@@ -904,9 +1122,9 @@ if (this.prekazky.koliziaHadaSPrekazkou(this.hlavaHada)) {
 }
 ```
 
-Popis:
+Táto podmienka kontroluje, či hlava hada koliduje s nejakou prekážkou na hracej ploche. Ak sa táto podmienka vyhodnotí ako `true`, nastavuje sa premenná `koniecHry` na hodnotu `true`, čo znamená koniec hry.
 
-- dopísať
+V praxi to znamená, že ak hlava hada narazí do nejakej prekážky, hra sa ukončí. Táto podmienka zabezpečuje, aby had nemohol prejsť cez prekážky, a tým zvyšuje obtiažnosť hry.
 
 #### kontrola kolízie jedla s prekážkou
 
@@ -916,9 +1134,9 @@ if (this.jedlo.koliziaJedlaSPrekazkou(this.prekazky)) {
 }
 ```
 
-Popis:
+Táto podmienka kontroluje, či nové umiestnenie jedla koliduje s nejakou prekážkou na hracej ploche. Ak sa táto podmienka vyhodnotí ako `true`, volá sa metóda `umiestniJedlo()`, ktorá zabezpečí, že jedlo bude umiestnené na novej pozícii, ktorá nekoliduje s prekážkami.
 
-- dopísať
+Tento postup je dôležitý pre správne fungovanie hry, aby jedlo bolo vždy umiestnené na bezpečnom mieste, kde ho had môže zjesť, a zároveň aby to bolo v súlade s pravidlami hry.
 
 ### kolizia(Object objekt1, Object objekt2)
 
@@ -933,9 +1151,7 @@ public static boolean kolizia(Object objekt1, Object objekt2) {
 }
 ```
 
-Popis:
-
-- dopísať
+Táto metóda slúži na kontrolu kolízií medzi dvoma objektami. Ak sú oba objekty inštanciami triedy `Policko`, metóda porovná ich súradnice a vráti `true`, ak majú rovnaké súradnice (tj. sú na rovnakej pozícii). Inak vráti `false`. Metóda je navrhnutá tak, aby pracovala so všeobecnými objektami, ale je špecificky implementovaná pre prípad, keď objekty sú inštanciami triedy `Policko`.
 
 ### actionPerformed(ActionEvent e)
 
@@ -952,9 +1168,7 @@ public void actionPerformed(ActionEvent e) {
 }
 ```
 
-Popis:
-
-- dopísať
+V tejto metóde `actionPerformed` sa volá metóda `pohyb()`, ktorá zabezpečuje pohyb hada, a následne sa volá metóda `repaint()`, ktorá vyvolá opätovné vykreslenie komponentu. Po týchto krokoch sa kontroluje, či hra skončila. Ak `koniecHry` má hodnotu `true`, vytvorí sa nová inštancia triedy `Aplikacia` a zavolá sa jej metóda `prehralSi(this, this.prekazky)`, kde this predstavuje aktuálnu inštanciu triedy `Snake`.
 
 ### keyPressed (KeyEvent e)
 
@@ -964,9 +1178,7 @@ public void keyPressed(KeyEvent e) {
 }
 ```
 
-Popis:
-
-- dopísať
+V tejto metóde `keyPressed` sa volá metóda `keyPressed` z objektu `manazer` (ktorý je typu `Manazer`), a ako parameter sa jej odovzdáva parameter `e` z metódy `keyPressed` tejto triedy. Táto metóda sa používa na spracovanie stlačených kláves.
 
 ### generujNahodnePolicko()
 
@@ -976,6 +1188,4 @@ public Policko generujNahodnePolicko() {
 }
 ```
 
-Popis:
-
-- dopísať
+Metóda `generujNahodnePolicko` vracia nový objekt typu `Policko`, ktorý je inicializovaný náhodnými hodnotami pre svoje súradnice X a Y. Tieto hodnoty sú generované pomocou inštancie `Random` s názvom `nahodne`. Konkrétne hodnoty sú generované tak, že sú náhodné indexy v rozsahu od 0 do určených hodnôt (počet polí v šírke a výške hracej plochy, deleno veľkosťou políčka).
