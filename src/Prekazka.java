@@ -20,7 +20,7 @@ public class Prekazka {
     private int velkostPolicka;
     private int pocetPrekazok;
 
-    public Prekazka(int sirkaPlochy, int vyskaPlochy, int velkostPolicka, int pocetPrekazok){
+    public Prekazka(int sirkaPlochy, int vyskaPlochy, int velkostPolicka, int pocetPrekazok) {
         this.sirkaPlochy = sirkaPlochy;
         this.vyskaPlochy = vyskaPlochy;
         this.velkostPolicka = velkostPolicka;
